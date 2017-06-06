@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TaskSystem.UserTaskViewModel>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Task List";
+}
+
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>   
+
+<h3><u>Task List</u></h3>
+<br /><br />
+
+
+@{
+
+    if(!string.IsNullOrEmpty(Convert.ToString(@TempData["ModelError"])))
+    {
+        <span class="alert alert-danger" style="color:red">@TempData["ModelError"]</span>
+    }
+
+    if (!string.IsNullOrEmpty(Convert.ToString(@TempData["ModelSuccess"])))
+    {
+        <span class="alert alert-success" style="color:green">@TempData["ModelSuccess"]</span>
+    }
+
+}
+
+<br />
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.Name).Titled("Name").Filterable(true);
+    columns.Add(c => c.Description).Titled("Description").Filterable(true);
+    columns.Add(c => c.FromDate).Titled("From").Format("{0:dd/MM/yyyy}").Filterable(false);
+    columns.Add(c => c.ToDate).Titled("To").Format("{0:dd/MM/yyyy}").Filterable(false);
+
+
+    columns.Add(c => c.AssignedByUsrName).Titled("Assigned By").Filterable(true);
+    columns.Add(c => c.AssignedToUsrName).Titled("Assigned To").Filterable(true);
+    columns.Add(c => c.ParentTaskName).Titled("Master Task").Filterable(true);
+    columns.Add(c => c.CompletedOn).Titled("Completed On").Format("{0:dd/MM/yyyy}").Filterable(false);
+
+    columns.Add().Titled("Action")
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Edit", "TaskNew", new { id = o.Id }, new { @class = "btn btn-primary btn-xs" }));
+    columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Delete", "TaskDelete", new { id = o.Id }, new { @class = "btn btn-danger btn-xs" }));
+
+
+}).WithPaging(10).Sortable(true)
+
+   
+
