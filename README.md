@@ -5,7 +5,7 @@ Simple Task System project created using visual studio 2015.
 
 The project is an MVC 5.0 project. Default routing changed from "Home View" to Task List View.
 
-SQLite as database (database file in App_data folder) with PETAPOCO ORM.
+SQLite as database (database file in App_data folder and also CHANGE CONNECTION STRING IN WEB.CONFIG) with PETAPOCO ORM.
 
 There is only one controller for managing task named as UserTasksController and two views.
 
