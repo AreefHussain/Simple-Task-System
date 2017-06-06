@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace TaskSystem
 {
-    public interface EntityBase
+    public interface IEntityBase
     {
       int Id { get; set; }
     }
-    public class UserTasks : EntityBase
+    public class UserTasks : IEntityBase
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -28,7 +28,7 @@ namespace TaskSystem
         public DateTime? LastUpdatedOn { get; set; }
     }
 
-    public class ApplicationUsers : EntityBase
+    public class ApplicationUsers : IEntityBase
     {
         public int Id { get; set; }
         public string Name { get; set; }
