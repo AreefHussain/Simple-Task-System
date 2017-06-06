@@ -37,3 +37,6 @@ Beacuse of the 2 hours coding time limit you can't see a perfect design pattern.
 basic design principles using OOPS and
 project uses defualt mvc 5 template with bootstrap.
 
+ ****** AND ONLY TESTED IN MOZILLA FIREFOX *************
+
+
